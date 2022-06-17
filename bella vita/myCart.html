@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            margin-top: 200px;
+            margin-left: 140px;
+        }
+        #quantityDiv {
+            margin-left: 50px;
+            border: 1px solid black;
+            width: 100px;
+            height: 40px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        } #quantityDiv > button {
+            background-color: white;
+            border: none;
+            width: 30px;
+            font-size: 20px; 
+            color: black;
+             
+        }
+        #counter {
+           color: black ;
+           font-weight: bold;
+        }
+        #decrementButton {
+            cursor: pointer;
+        }
+        #incrementButton {
+            cursor: pointer;
+        }
+        img {
+            margin-left: 70px;
+            width: 200px;
+            height: 200px;
+        }
+        #container{
+            border: none;
+            display: flex;
+            width: 80%;
+            margin: auto;
+            border-top: 1px solid rgb(231, 228, 228);
+            border-bottom: 1px solid rgb(231, 228, 228);
+        
+        }
+        #head {
+            border: none;
+            height: 50px;
+            display: flex;
+            width: 80%;
+            margin: auto;
+            justify-content: space-around;
+        }
+        #q {
+            margin-left: 160px;
+        }
+        #total {
+            margin-left: 240px;
+        }
+        #btn {
+            width: 230px;
+            height: 38px;
+            border-radius: 5px;
+            background-color: #475d4b;
+            color: aliceblue;
+            border: none;
+            margin-left: 1000px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div id="head">
+        <p>Product</p>
+        <p id="q">Quantity</p>
+        <p>Total</p>
+    </div>
+    <div id="container">  </div>
+
+    <button  onclick="checkout()" id="btn">Check out</button>
+</body>
+</html>
+
+
+<script>
+    let data = JSON.parse(localStorage.getItem("data"))
+    console.log(data)
+
+    data.forEach((el)=>{
+        let div1 = document.createElement("div")
+        let div2 = document.createElement("div")
+        let div3 = document.createElement("div")
+        let div4 = document.createElement("div")
+
+        let img = document.createElement("img")
+        img.src = el.img 
+
+        let name = document.createElement("p")
+        name.innerText = el.name  
+        name.id = "name"
+
+        let price = document.createElement("p")
+        price.innerText = el.price
+        price.id = "price"
+
+        var quantityDiv = document.createElement('div')
+          quantityDiv.setAttribute("id", "quantityDiv")
+    
+
+          var decrementButton = document.createElement("button")
+          decrementButton.innerHTML = "-"
+          decrementButton.setAttribute("id", "decrementButton")
+        
+
+          var counter = document.createElement("p")
+          counter.innerHTML = 1
+          counter.setAttribute("id", "counter")
+
+          var incrementButton = document.createElement("button")
+          incrementButton.innerHTML = "+"
+          incrementButton.setAttribute("id", "incrementButton")
+         
+          var total = document.createElement("p")
+          total.innerText = 456
+          total.setAttribute("id", "total")
+
+        quantityDiv.append(decrementButton, counter, incrementButton)
+        div1.append(img)
+        div2.append(name)
+        div3.append(quantityDiv)
+        div4.append(total)
+        document.getElementById("container").append(div1,div2,div3, div4)
+        
+    })
+
+     function checkout(){
+        window.location.href="checkout.html"
+     }
+
+</script>
